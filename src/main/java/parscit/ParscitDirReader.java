@@ -19,7 +19,6 @@ public class ParscitDirReader {
 				System.out.println("********************************************************************");
 			}
 		}
-
 	}
-
+	
 }
