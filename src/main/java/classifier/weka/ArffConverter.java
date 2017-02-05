@@ -3,6 +3,7 @@ package classifier.weka;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,13 +15,13 @@ import weka.core.converters.ArffSaver;
 
 public class ArffConverter {
 
-	//private static String dataDirPath = "src/main/resources/train/corpusDirPlainTxt/";
+	private static String dataDirPath = "src/main/resources/corpusDirPlainTxt/";
 	//private static String dataDirPath = "src/main/resources/test/trecData/";
-	private static String dataDirPath = "src/main/resources/test/mts_preprocessed/";
+	//private static String dataDirPath = "src/main/resources/test/mts_preprocessed/";
 	
-	private static String arff = "src/main/resources/weka/mts.arff";	
+	private static String arff = "src/main/resources/weka/train.arff";	
 
-	private static boolean train = false;
+	private static boolean train = true;
 
 	//private static Pattern pattern = Pattern.compile("trec(\\d\\d\\d\\d)-.*.txt");
 	private static Pattern pattern = Pattern.compile("MTS(\\d\\d\\d\\d)-.*.txt");
@@ -38,7 +39,9 @@ public class ArffConverter {
 
 
 		if(train){
-			for(File classDir : dataDir.listFiles()){
+			File[] files = dataDir.listFiles();
+			Arrays.sort(files);
+			for(File classDir : files){
 				if(!classDir.isHidden()){
 					attVals.add(classDir.getName());				
 				}
