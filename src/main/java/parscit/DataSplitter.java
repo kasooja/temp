@@ -62,7 +62,7 @@ public class DataSplitter {
 		System.out.println("******************************");		
 		System.out.println(maxYear);
 		System.out.println("******************************");		
-		
+
 		Set<Integer> keySet = yearFileMap.keySet();
 		List<Integer> sortedList = new ArrayList<Integer>(keySet);
 		Collections.sort(sortedList);
@@ -70,24 +70,27 @@ public class DataSplitter {
 		List<String> files = new ArrayList<String>();
 		int classNameInt = 1;
 		for(Integer year : sortedList){
-			System.out.println(year);			
 			List<String> fileMap = yearFileMap.get(year);
 			if(span < 5){
+				System.out.println(year);			
 				files.addAll(fileMap);
 				span++;
-			} else {
+
+			} else if(span>=5 || sortedList.size() == (sortedList.indexOf(year)+1)){
 				System.out.println("******************************");		
-				
+				System.out.println(year);			
+
 				String dest = compressed_separatedDirPath + "/" + String.valueOf(classNameInt++);
 				new File(dest).mkdir();
 				for(String file : files){
 					new File(file).renameTo(new File(dest + "/" +  new File(file).getName()));
 				}
-				fileMap = new ArrayList<String>();
-				span = 0;
+				files = new ArrayList<String>();
+				files.addAll(fileMap);
+				span = 1;
 			}
 		}
-	
+
 	}
 
 }
