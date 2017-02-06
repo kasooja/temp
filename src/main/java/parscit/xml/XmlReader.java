@@ -1,4 +1,4 @@
-package parscit;
+package parscit.xml;
 
 
 import javax.xml.parsers.SAXParser;

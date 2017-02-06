@@ -1,4 +1,4 @@
-package parscit;
+package parscit.xml;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,10 @@ public class XmlHandler extends DefaultHandler {
 			throws SAXException {		
 		if (qName.equalsIgnoreCase("bodyText")) {
 			takeText = true;
-		}		
+		}	
+		if (qName.equalsIgnoreCase("email")) {
+			takeText = false;
+		}	
 	}	
 
 	public void endElement(String uri, String localName, String qName) throws SAXException {

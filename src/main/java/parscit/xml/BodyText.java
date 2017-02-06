@@ -1,4 +1,4 @@
-package parscit;
+package parscit.xml;
 
 public class BodyText {
 
