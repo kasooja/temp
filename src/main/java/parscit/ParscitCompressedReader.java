@@ -1,15 +1,11 @@
 package parscit;
 
 import java.io.File;
-import org.codehaus.plexus.PlexusContainer;
+
 import org.codehaus.plexus.archiver.UnArchiver;
 import org.codehaus.plexus.archiver.tar.TarGZipUnArchiver;
-import org.codehaus.plexus.logging.AbstractLogEnabled;
-import org.codehaus.plexus.logging.LogEnabled;
 import org.codehaus.plexus.logging.Logger;
 import org.codehaus.plexus.logging.console.ConsoleLogger;
-import org.codehaus.plexus.personality.plexus.lifecycle.phase.LogEnablePhase;
-import org.xml.sax.helpers.DefaultHandler;
 
 public class ParscitCompressedReader {
 
