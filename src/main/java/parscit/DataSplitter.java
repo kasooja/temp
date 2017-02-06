@@ -13,8 +13,8 @@ import java.util.regex.Pattern;
 public class DataSplitter {
 
 	public static void main(String[] args) {
-		String compressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parcit/Compressed/";
-		String compressed_separatedDirPath = "C:/Users/Kartik Asooja/Downloads/Parcit/Compressed_Separated/";
+		String compressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parscit/Compressed/";
+		String compressed_separatedDirPath = "C:/Users/Kartik Asooja/Downloads/Parscit/Compressed_Separated/";
 
 		Pattern patt = Pattern.compile("[A-Z](\\d\\d)");
 		File dir = new File(compressedDirPath);

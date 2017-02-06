@@ -9,8 +9,8 @@ import org.codehaus.plexus.logging.console.ConsoleLogger;
 
 public class ParscitCompressedReader {
 
-	public static String compressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parcit/Compressed_Separated/";
-	public static String uncompressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parcit/Uncompressed_Separated/";
+	public static String compressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parscit/Compressed_Separated/";
+	public static String uncompressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parscit/Uncompressed_Separated/";
 
 	public static void main(String[] args) {
 		UnArchiver unarchiver = new TarGZipUnArchiver() {
