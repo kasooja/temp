@@ -9,30 +9,34 @@ import org.codehaus.plexus.logging.console.ConsoleLogger;
 
 public class ParscitCompressedReader {
 
-	public static String compressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parcit/Compressed/";
-	public static String uncompressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parcit/Uncompressed/";
+	public static String compressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parcit/Compressed_Separated/";
+	public static String uncompressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parcit/Uncompressed_Separated/";
 
 	public static void main(String[] args) {
 		UnArchiver unarchiver = new TarGZipUnArchiver() {
-			 @Override
-		        protected Logger getLogger() {
-		            return new ConsoleLogger(Logger.LEVEL_DEBUG, "dependencies-unarchiver");
-		        }
+			@Override
+			protected Logger getLogger() {
+				return new ConsoleLogger(Logger.LEVEL_DEBUG, "dependencies-unarchiver");
+			}
 		};
 		File dir = new File(compressedDirPath);
-		for(File file : dir.listFiles()){
-			if(!file.isHidden()){						
-				unarchiver.setSourceFile(file);				
-				unarchiver.setDestDirectory(new File(uncompressedDirPath));
-				unarchiver.extract();
-				System.out.println("********************************************************************");				
+		for(File classDir : dir.listFiles()){
+			String uncompressedClassDirPath = uncompressedDirPath + "/" + classDir.getName();
+			new File(uncompressedClassDirPath).mkdir();
+			for(File file : classDir.listFiles()){				
+				if(!file.isHidden()){						
+					unarchiver.setSourceFile(file);							
+					unarchiver.setDestDirectory(new File(uncompressedClassDirPath));
+					unarchiver.extract();
+					System.out.println("********************************************************************");				
+				}
+				//				ParscitFile pfile = new ParscitFile();
+				//				DefaultHandler handler = new XmlHandler(pfile);
+				//				XmlReader lReader = new XmlReader(file.getAbsolutePath());
+				//				lReader.read(handler);
+				//				System.out.println(pfile);
+				//				System.out.println("********************************************************************");
 			}
-			//				ParscitFile pfile = new ParscitFile();
-			//				DefaultHandler handler = new XmlHandler(pfile);
-			//				XmlReader lReader = new XmlReader(file.getAbsolutePath());
-			//				lReader.read(handler);
-			//				System.out.println(pfile);
-			//				System.out.println("********************************************************************");
 		}
 	}
 
