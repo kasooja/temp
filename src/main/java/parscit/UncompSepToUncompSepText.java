@@ -9,7 +9,7 @@ import parscit.xml.ParscitFile;
 import parscit.xml.XmlHandler;
 import parscit.xml.XmlReader;
 
-public class ParscitDirReader {
+public class UncompSepToUncompSepText {
 	public static String dirPath = "C:/Users/Kartik Asooja/Downloads/Parscit/Uncompressed_Separated/";
 	public static String destDirPath = "C:/Users/Kartik Asooja/Downloads/Parscit/Uncompressed_Separated_Text/";
 

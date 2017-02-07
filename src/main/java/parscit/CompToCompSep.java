@@ -10,11 +10,11 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DataSplitter {
+public class CompToCompSep {
 
 	public static void main(String[] args) {
 		String compressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parscit/Compressed/";
-		String compressed_separatedDirPath = "C:/Users/Kartik Asooja/Downloads/Parscit/Compressed_Separated/";
+		String compressed_separatedDirPath = "C:/Users/Kartik Asooja/Downloads/Parscit/CompSep/";
 
 		Pattern patt = Pattern.compile("[A-Z](\\d\\d)");
 		File dir = new File(compressedDirPath);

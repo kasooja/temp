@@ -31,7 +31,7 @@ public class XmlHandler extends DefaultHandler {
 	public void endElement(String uri, String localName, String qName) throws SAXException {
 		if(qName.equalsIgnoreCase("bodyText")){
 			list.add(new BodyText(tagStringValue.trim()));
-			bld.append(tagStringValue.trim() + "\n");
+			bld.append(tagStringValue.trim() + " ");
 			takeText = false;
 			tagStringValue = "";
 		}

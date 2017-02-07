@@ -7,7 +7,7 @@ import org.codehaus.plexus.archiver.tar.TarGZipUnArchiver;
 import org.codehaus.plexus.logging.Logger;
 import org.codehaus.plexus.logging.console.ConsoleLogger;
 
-public class ParscitCompressedReader {
+public class CompToUncompSep {
 
 	public static String compressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parscit/Compressed_Separated/";
 	public static String uncompressedDirPath = "C:/Users/Kartik Asooja/Downloads/Parscit/Uncompressed_Separated/";

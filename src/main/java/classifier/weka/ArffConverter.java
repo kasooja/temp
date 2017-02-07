@@ -15,17 +15,18 @@ import weka.core.converters.ArffSaver;
 
 public class ArffConverter {
 
-	private static String dataDirPath = "src/main/resources/corpusDirPlainTxt/";
-	//private static String dataDirPath = "src/main/resources/test/trecData/";
-	//private static String dataDirPath = "src/main/resources/test/mts_preprocessed/";
+	//private static String dataDirPath = "C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/Parscit/Uncompressed_Separated_Text/";
+	//private static String dataDirPath = "C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/nlp4nlp/trec/trec_small/";
+	//private static String dataDirPath = "C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/nlp4nlp/mts/mts_small/";
+	private static String dataDirPath = "C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/nlp4nlp/trec/trec_extracted/";
+	//private static String dataDirPath = "C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/nlp4nlp/mts/mts_extracted/";
 	
-	private static String arff = "src/main/resources/weka/train.arff";	
+	private static String arff = "src/main/resources/weka/test_lat_trec_ext_data.arff";	
 
-	private static boolean train = true;
+	private static boolean train = false;
 
-	//private static Pattern pattern = Pattern.compile("trec(\\d\\d\\d\\d)-.*.txt");
-	private static Pattern pattern = Pattern.compile("MTS(\\d\\d\\d\\d)-.*.txt");
-
+	private static Pattern pattern = Pattern.compile("trec(\\d\\d\\d\\d)-.*.txt");
+	//private static Pattern pattern = Pattern.compile("MTS(\\d\\d\\d\\d)-.*.txt");
 
 	public static void main(String[] args) throws IOException {	
 		ArrayList<Attribute> atts;
@@ -47,7 +48,7 @@ public class ArffConverter {
 				}
 			}
 		} else {
-			for(int i=1; i<=7; i++){
+			for(int i=1; i<=8; i++){
 				attVals.add(String.valueOf(i));				
 			}			
 		}
@@ -94,7 +95,7 @@ public class ArffConverter {
 			e.printStackTrace();
 		}			
 
-		System.out.println(data);
+		//System.out.println(data);
 
 	}
 
@@ -103,20 +104,22 @@ public class ArffConverter {
 		if(matcher.find()){
 			String yearAsString = matcher.group(1).trim();
 			int year = Integer.parseInt(yearAsString);
-			if(year >= 1965 && year <= 1975){
+			if(year >= 1979 && year <= 1983){
 				return String.valueOf(1);
-			} else if(year >= 1978 && year <= 1982){
+			} else if(year >= 1984 && year <= 1988){
 				return String.valueOf(2);
-			} else if(year >= 1983 && year <= 1987){
+			} else if(year >= 1989 && year <= 1993){
 				return String.valueOf(3);
-			} else if(year >= 1988 && year <= 1992){
+			} else if(year >= 1994 && year <= 1998){
 				return String.valueOf(4);
-			} else if(year >= 1993 && year <= 1997){
+			} else if(year >= 1999 && year <= 2003){
 				return String.valueOf(5);
-			} else if(year >= 1998 && year <= 2002){
+			} else if(year >= 2004 && year <= 2008){
 				return String.valueOf(6);
-			} else if(year >= 2003 && year <= 2006){
+			} else if(year >= 2009 && year <= 2013){
 				return String.valueOf(7);
+			} else if(year >= 2014 && year <= 2015){
+				return String.valueOf(8);
 			} else {
 				return null;
 			}
@@ -126,3 +129,25 @@ public class ArffConverter {
 	}
 
 }
+
+//if(matcher.find()){
+//	String yearAsString = matcher.group(1).trim();
+//	int year = Integer.parseInt(yearAsString);
+//	if(year >= 1965 && year <= 1975){
+//		return String.valueOf(1);
+//	} else if(year >= 1978 && year <= 1982){
+//		return String.valueOf(2);
+//	} else if(year >= 1983 && year <= 1987){
+//		return String.valueOf(3);
+//	} else if(year >= 1988 && year <= 1992){
+//		return String.valueOf(4);
+//	} else if(year >= 1993 && year <= 1997){
+//		return String.valueOf(5);
+//	} else if(year >= 1998 && year <= 2002){
+//		return String.valueOf(6);
+//	} else if(year >= 2003 && year <= 2006){
+//		return String.valueOf(7);
+//	} else {
+//		return null;
+//	}
+//}
