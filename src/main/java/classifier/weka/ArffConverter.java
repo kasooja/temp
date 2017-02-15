@@ -65,7 +65,7 @@ public class ArffConverter {
 					for(File dataFile : classDir.listFiles()){
 						if(!dataFile.isHidden()){	
 							double[] vals = new double[data.numAttributes()];//returns number of attributes						
-							vals[0] = data.attribute(0).addStringValue(BasicFileTools.extractText(dataFile).trim());
+							vals[0] = data.attribute(0).addStringValue(BasicFileTools.extractText(dataFile, " \n ").trim());
 							vals[1] = attVals.indexOf(className);
 							data.add(new DenseInstance(1.0, vals));
 						}
@@ -78,7 +78,7 @@ public class ArffConverter {
 					String className = getClassNameFromYear(dataFile.getName());	
 					if(className!=null){
 						double[] vals = new double[data.numAttributes()];//returns number of attributes						
-						vals[0] = data.attribute(0).addStringValue(BasicFileTools.extractText(dataFile).trim());
+						vals[0] = data.attribute(0).addStringValue(BasicFileTools.extractText(dataFile, " \n ").trim());
 						vals[1] = attVals.indexOf(className);
 						data.add(new DenseInstance(1.0, vals));
 					}

@@ -98,7 +98,7 @@ public class BasicFileTools {
 		return getBufferedReader(getFile(filePath));
 	}
 
-	public static String extractText(File file){
+	public static String extractText(File file, String lineAppender){
 		BufferedReader bufferedReader = getBufferedReader(file);
 		StringBuffer fileText = new StringBuffer();
 		try {
@@ -106,7 +106,7 @@ public class BasicFileTools {
 			int j = 0;
 			while((line = bufferedReader.readLine())!= null) {
 				j++;
-				fileText.append(line + "\n");
+				fileText.append(line + lineAppender);
 			}
 			numberOfLineRead = j;			
 		} catch (IOException e) {
@@ -132,7 +132,7 @@ public class BasicFileTools {
 	}
 
 	public static String extractText(String filePath){
-		return extractText(getFile(filePath));
+		return extractText(getFile(filePath), "\n ");
 	}	
 
 	public static boolean writeFile(String filePath, String text) {
