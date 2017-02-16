@@ -89,3 +89,93 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
 10. Finally, run python/embeddings/count/example.py with the aligned embeddings generated above:
     
     /home/kat/Downloads/Anne/embeddings/span_period_years/5/ppmi/svd/250/280594/11/aligned/
+    
+    Sample output 1 below:
+    
+    Similarity between translation and statistical drastically increases from 1979s to the 2014s:
+    
+    1979, cosine similarity=-0.01
+    
+    1984, cosine similarity=-0.05
+    
+    1989, cosine similarity=0.09
+    
+    1994, cosine similarity=0.17
+    
+    1999, cosine similarity=0.43
+    
+    2004, cosine similarity=0.45
+    
+    2009, cosine similarity=0.51
+    
+    2014, cosine similarity=0.41
+    
+    Overall related words for translation from 1979s to the 2014s:
+    
+    set(['translator', 'tsujii', 'sergei', 'smt', 'translations', 'ebmt', 'slocum', 'machine', 'mt', 'lawson', 'bilingual', 'mechanical', 'translation', 'automatic'])
+    
+    Related words for translation from 1979s to the 2014s:
+    
+    1979:  set(['aided', 'translator', 'translations', 'logical', 'machine', 'mt', 'mechanical', 'translated', 'translation', 'automatic'])
+    
+    1984:  set(['ajcl', 'translator', 'lugano', 'allc', 'loh', 'issco', 'machine', 'mt', 'lawson', 'translation'])
+    
+    1989:  set(['sergei', 'tsujii', 'rbmt', 'transfer', 'interlingua', 'ebmt', 'slocum', 'machine', 'nirenburg', 'translation'])
+    
+    1994:  set(['transfer', 'translations', 'ebmt', 'machine', 'mt', 'ents', 'translation', 'kbmt', 'furuse', 'tdmt'])
+    
+    1999:  set(['translating', 'smt', 'translations', 'ebmt', 'machine', 'mt', 'bilingual', 'translation', 'hpat', 'alignment'])
+    
+    2004:  set(['och', 'source', 'smt', 'translations', 'machine', 'mt', 'bilingual', 'translation', 'zens', 'alignment'])
+    
+    2009:  set(['koehn', 'smt', 'translations', 'ebmt', 'machine', 'mt', 'statistical', 'translation', 'translate', 'moses'])
+    
+    2014:  set(['bleu', 'translating', 'somers', 'smt', 'translations', 'machine', 'mt', 'translation', 'quality', 'moses'])
+    
+    
+    
+    
+    
+    
+    
+   Sample output 2 below:
+   
+   Similarity between neural and deep drastically increases from 1979s to the 2014s:
+   
+   1979, cosine similarity=0.00
+   
+   1984, cosine similarity=-0.06
+   
+   1989, cosine similarity=0.07
+   
+   1994, cosine similarity=-0.01
+   
+   1999, cosine similarity=0.07
+   
+   2004, cosine similarity=-0.05
+   
+   2009, cosine similarity=0.46
+   
+   2014, cosine similarity=0.64
+
+   Overall related words for neural from 1979s to the 2014s:
+    
+   set(['ssns', 'spreading', 'subscribe', 'zero', 'computation', 'nets', 'networks', 'network', 'zone', 'recurrent', 'young', 'bengio', 'quarterly', 'hinton', 'convolutional', 'rnn', 'activation', 'optical', 'bayesian', 'timely', 'neural', 'yorktown', 'backpropagation', 'softmax', 'z'])
+
+   Related words for neural from 1979s to the 2014s:
+    
+   1979:  set(['zone', 'yn', 'yielding', 'young', 'yield', 'yorktown', 'zero', 'yields', 'york', 'z'])
+   
+   1984:  set(['contributing', 'rapidly', 'interdisciplinary', 'neural', 'spreading', 'reviews', 'optical', 'computation', 'quarterly', 'activation'])
+   
+   1989:  set(['bayesian', 'refereed', 'publication', 'neural', 'timely', 'subscribe', 'computation', 'quarterly', 'classifier', 'today'])
+   
+   1994:  set(['network', 'neural', 'recurrent', 'elman', 'networks', 'backpropagation', 'hinton', 'nets', 'rumelhart', 'rcc'])
+   
+   1999:  set(['sejnowski', 'pulsed', 'network', 'rosenberg', 'neural', 'hnn', 'backpropagation', 'softmax', 'synchrony', 'networks'])
+   
+   2004:  set(['network', 'ssns', 'sbns', 'neural', 'bishop', 'backpropagation', 'ssn', 'activations', 'synchrony', 'networks'])
+   
+   2009:  set(['rnn', 'neural', 'recurrent', 'dnns', 'autoencoders', 'bengio', 'collobert', 'mikolov', 'hinton', 'mnih'])
+   
+   2014:  set(['convolutional', 'feedforward', 'network', 'neural', 'recursive', 'recurrent', 'elman', 'rnns', 'networks', 'rnn'])
