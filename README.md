@@ -29,6 +29,7 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
 4. Use python/embeddings/count/makewordlists.py to create all word list, and all minus stopwords word list.
     
     FREQS = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/time_period_freqs/{type}.pkl"
+ 
     OUT = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/word_lists/{type}-{cond}.pkl"
 
 5. Use python/embeddings/count/makeglobalwordlists.py to create a global word list.
@@ -37,3 +38,24 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
     FREQS = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/full_freqs/{type}.pkl"
     
     OUT = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/word_lists/full-{type}-{cond}.pkl"
+
+6. Use python/embeddings/count/makecoocccurs.py to create a co-occurence matrix.
+   
+    script parameters: -type word -window_size 5
+    
+    
+    
+    
+    
+    
+Below is to be updated:
+    
+index.pkl here is same as word-dict.pkl in the info folder
+
+
+ppmigen args example:
+-count_path /home/kat/Downloads/Anne/CurrentData/Uncompressed_pickled/cooccurs/word/5/2009.bin -out_path /home/kat/Downloads/Annee/CurrentData/Uncompressed_pickled/ppmi/2009
+
+makelowdim args example:
+
+-in_dir /home/kat/Downloads/Anne/CurrentData/Uncompressed_pickled/ppmi/ -count_dir /home/kat/Downloads/Annee/CurrentData/Uncompressed_pickled/halfdecade_freqs/ -word_file /home/kat/Downloads/Annee/CurrentData/Uncompressed_pickled/cooccurs/word/5/index.pkl
