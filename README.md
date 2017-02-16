@@ -86,4 +86,6 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
       The other parameters used the default values in this example.
       
       
-10. /home/kat/Downloads/Anne/embeddings/span_period_years/5/ppmi/svd/250/280594/11/aligned/
+10. Finally, run python/embeddings/count/example.py with the aligned embeddings generated above:
+    
+    /home/kat/Downloads/Anne/embeddings/span_period_years/5/ppmi/svd/250/280594/11/aligned/
