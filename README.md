@@ -26,4 +26,14 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
     
     DIR = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/time_period_freqs/"
 
-4. 
+4. Use python/embeddings/count/makewordlists.py to create all word list, and all minus stopwords word list.
+    
+    FREQS = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/time_period_freqs/{type}.pkl"
+    OUT = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/word_lists/{type}-{cond}.pkl"
+
+5. Use python/embeddings/count/makeglobalwordlists.py to create a global word list.
+    Use average frequency or total frequency?
+    
+    FREQS = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/full_freqs/{type}.pkl"
+    
+    OUT = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/word_lists/full-{type}-{cond}.pkl"
