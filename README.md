@@ -90,7 +90,7 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
     
     /home/kat/Downloads/Anne/embeddings/span_period_years/5/ppmi/svd/250/280594/11/aligned/
     
-    Sample output 1 below:
+Sample output 1 below:
     
     Similarity between translation and statistical drastically increases from 1979s to the 2014s:
     
@@ -137,8 +137,7 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
     
     
     
-    
-   Sample output 2 below:
+Sample output 2 below:
    
    Similarity between neural and deep drastically increases from 1979s to the 2014s:
    
