@@ -10,11 +10,13 @@ Then, below steps using Python code:
 End year value is 2019 in the example because it is in the range function with step value of 5.
 So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
 
+
 1. First use python/embeddings/count/buildindexes.py to create a word-dictionary from the overall text. 
 
         DATA = "/home/kat/Downloads/Anne/Corpus/span_period_years/5/Hyphen_Cleaned_Uncompressed_Separated_Text/"
 
         OUT = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/info/"
+
 
 2. Use python/embeddings/count/computefrequencies.py to compute the frequencies per time-period dir, and overall frequencies of the words
 
@@ -22,9 +24,11 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
 
         OUT = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/"
 
+
 3. Use python/embeddings/count/combinefreqdicts.py to make a pickle (serialized) file containing all time-period freq dists.
     
         DIR = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/time_period_freqs/"
+
 
 4. Use python/embeddings/count/makewordlists.py to create all word list, and all minus stopwords word list.
     
@@ -32,12 +36,14 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
  
         OUT = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/word_lists/{type}-{cond}.pkl"
 
+
 5. Use python/embeddings/count/makeglobalwordlists.py to create a global word list.
     Use average frequency or total frequency?
     
         FREQS = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/full_freqs/{type}.pkl"
     
         OUT = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/word_lists/full-{type}-{cond}.pkl"
+
 
 6. Use python/embeddings/count/makecoocccurs.py to create a co-occurrence matrix.
 
@@ -57,15 +63,27 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
    
       script parameters: -count_path /home/kat/Downloads/Anne/embeddings/span_period_years/5/cooccurs/word/5/1979.bin -out_path /home/kat/Downloads/Anne/embeddings/span_period_years/5/ppmi/1979
     
-   The other parameters used the default values in this example.
+      The other parameters used the default values in this example.
     
    Run ppmigen.py for all the time_period_dirs by changing the script parameters.
+
    
 8. Use python/embeddings/count/makelowdim.py to generate low dimensional SVD embeddings from the ppmi matrices generated above. 
    
       script parameters:
 
-    -in_dir /home/kat/Downloads/Anne/embeddings/span_period_years/5/ppmi/ -count_dir /home/kat/Downloads/Anne/embeddings/span_period_years/5/time_period_freqs/ -word_file /home/kat/Downloads/Anne/embeddings/span_period_years/5/cooccurs/word/5/index.pkl
+      -in_dir /home/kat/Downloads/Anne/embeddings/span_period_years/5/ppmi/ -count_dir /home/kat/Downloads/Anne/embeddings/span_period_years/5/time_period_freqs/ -word_file /home/kat/Downloads/Anne/embeddings/span_period_years/5/word_lists/full-word-nstop.pkl
 
-    The other parameters used the default values in this example.
+      The other parameters used the default values in this example.
 
+
+9. Use python/embeddings/count/seq_procrustes.py to align the learned embeddings in the above step.
+      
+      script parameters:
+      
+      -dir /home/kat/Downloads/Anne/embeddings/span_period_years/5/ppmi/svd/250/280594/11/ -rep_type SVD -count_dir /home/kat/Downloads/Anne/embeddings/span_period_years/5/time_period_freqs/ -word_file /home/kat/Downloads/Anne/embeddings/span_period_years/5/word_lists/full-word-nstop.pkl
+      
+      The other parameters used the default values in this example.
+      
+      
+10. /home/kat/Downloads/Anne/embeddings/span_period_years/5/ppmi/svd/250/280594/11/aligned/
