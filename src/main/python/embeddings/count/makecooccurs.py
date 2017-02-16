@@ -49,7 +49,7 @@ def worker(proc_num, queue, window_size, type, id_map):
                         if len(context) > window_size * 2 + 1:
                             context.pop(0)
                         pair_counts = _process_context(context, pair_counts, window_size)
-        sparse_io.export_mat_from_dict(pair_counts, OUT.format(type=type, window_size=window_size) + "/" + time_period_dir + ".coo")
+        sparse_io.export_mat_from_dict(pair_counts, OUT.format(type=type, window_size=window_size) + "/" + time_period_dir + ".bin")
 
 
 def _process_context(context, pair_counts, window_size):
