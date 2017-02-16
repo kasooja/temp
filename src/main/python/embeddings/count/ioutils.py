@@ -4,7 +4,8 @@ import cPickle as pickle
 
 
 def words_above_count(count_dir, year, min_count):
-    counts = load_pickle(count_dir + str(year) + "-counts.pkl")
+    # counts = load_pickle(count_dir + str(year) + "-counts.pkl")
+    counts = load_pickle(count_dir + str(year) + "-word.pkl")
     words = sorted([word for word, count in counts.iteritems() if count >= min_count], key = lambda word : -1*counts[word])
     return words
 
