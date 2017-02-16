@@ -39,22 +39,31 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
     
     OUT = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/word_lists/full-{type}-{cond}.pkl"
 
-6. Use python/embeddings/count/makecoocccurs.py to create a co-occurence matrix.
+6. Use python/embeddings/count/makecoocccurs.py to create a co-occurrence matrix.
    
+   
+    DATA = "/home/kat/Downloads/Anne/Corpus/span_period_years/5/Hyphen_Cleaned_Uncompressed_Separated_Text/"
+
+    DICT = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/info/{type}-dict.pkl"
+
+    OUT = "/home/kat/Downloads/Anne/embeddings/span_period_years/5/cooccurs/{type}/{window_size:d}/"
+
     script parameters: -type word -window_size 5
     
     
-    
-    
-    
-    
-Below is to be updated:
-    
-index.pkl here is same as word-dict.pkl in the info folder
+7. Copy, rename and put the word-dict (DICT) file used in creating the word-cooccurrence matrix in the above step, to OUT folder above /home/kat/Downloads/Anne/embeddings/span_period_years/5/cooccurs/word (notice removal of window_size:d, and type value used here is word) as index.pkl.
+    In short, index.pkl here is same as word-dict.pkl in the info folder, copied in the co-occurs folder.
 
-
-ppmigen args example:
--count_path /home/kat/Downloads/Anne/CurrentData/Uncompressed_pickled/cooccurs/word/5/2009.bin -out_path /home/kat/Downloads/Annee/CurrentData/Uncompressed_pickled/ppmi/2009
+   Then use python/embeddings/count/ppmigen.py to generate ppmi based matrix using the co-occurence matrix created in the above step.
+   
+   script parameters: -count_path /home/kat/Downloads/Anne/embeddings/span_period_years/5/cooccurs/word/5/1979.bin -out_path /home/kat/Downloads/Anne/embeddings/span_period_years/5/ppmi/1979
+    
+   The other parameters used the default values in this example.
+    
+   Run ppmigen.py for all the time_period_dirs by changing the script parameters.
+   
+8. 
+   
 
 makelowdim args example:
 
