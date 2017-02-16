@@ -7,6 +7,8 @@ First, use the text-preprocessors written in Java to create Hyphen_Cleaned_Uncom
 
 Then, below steps using Python code:
 
+End year value is 2019 in the example because it is in the range function with step value of 5.
+So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
 
 1. First use python/embeddings/count/buildindexes.py to create a word-dictionary from the overall text. 
 

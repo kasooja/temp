@@ -24,11 +24,13 @@ def process_file(fp, word_dict):
 if __name__ == "__main__":
     word_dict = {}
     span_period_years = 5
-    for dir_name in range(1979, 2014, span_period_years):
+    start_year = 1979
+    end_year = 2019
+    for dir_name in range(start_year, end_year, span_period_years):
         folder = str(dir_name)
         print "Processing folder...", folder
         for datafile in os.listdir(DATA + folder):
             with open(DATA + folder + "/" + datafile) as fp:
                 print "Processing file..", folder + "/" + datafile
                 process_file(fp, word_dict)
-    write_pickle(word_dict, OUT + "word-dict.pkl") 
+    write_pickle(word_dict, OUT + "word-dict.pkl")

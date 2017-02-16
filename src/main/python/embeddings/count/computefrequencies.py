@@ -34,10 +34,10 @@ def worker(proc_num, queue):
 if __name__ == "__main__":
     queue = Queue()
     span_period_years = 5
-    start_year_dir = 1979
-    end_year_dir = 2014
+    start_year = 1979
+    end_year = 2019
     mkdir(OUT + "time_period_freqs/")
-    for dir in range(start_year_dir, end_year_dir, span_period_years):
+    for dir in range(start_year, end_year, span_period_years):
         queue.put(dir)
     procs = [Process(target=worker, args=[i, queue]) for i in range(25)]
     for p in procs:
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     print "Getting full freqs..."
     word_freqs = Counter()
 
-    for dir in range(start_year_dir, end_year_dir, span_period_years):
+    for dir in range(start_year, end_year, span_period_years):
         dir = str(dir)
         print dir
         word_freqs += load_pickle(OUT + "time_period_freqs/" + dir + "-word.pkl")
