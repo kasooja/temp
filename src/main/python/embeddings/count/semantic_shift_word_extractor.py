@@ -65,7 +65,7 @@ def semantic_shift_word_last_1_year_dir(word, start_year):
 
             last_vs_current_rel = last_year_word_embed.dot(current_year_word_embed)
 
-        print last_year, "  ", year, "  ", last_vs_current_rel
+        print last_year, "  ", year, "  ", 1-last_vs_current_rel
         print "....................."
 
         last_year = year
@@ -95,7 +95,7 @@ def semantic_shift_word_last_1_year_dir_exists_all(word, start_year):
             ch = 1 - last_vs_current_rel
             if ch > 1.0:
                 ch = 1.0
-            change_year_list.append([year, ch ])
+            change_year_list.append([year, ch])
 
         else:
             return None
@@ -107,6 +107,15 @@ def semantic_shift_word_last_1_year_dir_exists_all(word, start_year):
 
 def getKey(item):
     return item[1]
+
+def follows_pattern(change_year_list, biggest_change_year, biggest_change):
+    prev_change = 0
+    for year, change in change_year_list:
+        if year > biggest_change_year:
+            if change  > prev_change + 0.007:
+                return False
+        prev_change = change
+    return True
 
 test_word = "kernel"
 #semantic_shift_word_last_1_year_dir_exists_all(test_word, 1984)
@@ -129,7 +138,7 @@ for word in words[end_year]:
     #print i
    # print "*******************************"
     #print word
-    exists = semantic_shift_word_last_1_year_dir_exists_all(word, 1984)
+    exists = semantic_shift_word_last_1_year_dir_exists_all(word, 1989)
     if exists is not None:
         print word
         rel_list, change_year_list = exists
@@ -141,15 +150,18 @@ for word in words[end_year]:
         total_change = 0.0
         biggest_change = -100.0
         biggest_change_year = -1900
+        if word == "proceedings":
+            print("found")
         for year, change in change_year_list:
             total_change = total_change + change
 
             if change > biggest_change:
                 biggest_change = change
                 biggest_change_year = year
-                specific_change_list.append([biggest_change_year, biggest_change, word])
-        total_change_list.append([word, total_change])
 
+        patt = follows_pattern(change_year_list, biggest_change_year, biggest_change)
+        specific_change_list.append([biggest_change_year, biggest_change, word, patt])
+        total_change_list.append([word, total_change])
 
     i= i+1
 
@@ -172,10 +184,11 @@ target = open("/home/kat/Downloads/Anne/change/specific_change.txt", 'w')
 #biggest change in the last 5 year, and the year
 specific_change_list = sorted(specific_change_list, key = getKey, reverse=True)
 count = 0
-for biggest_change_year, biggest_change, word in specific_change_list:
+for biggest_change_year, biggest_change, word, patt in specific_change_list:
     #if count < 500:
     print word, biggest_change_year, biggest_change
-    target.write(word + "\t" + str(biggest_change_year) + "\t" + str(biggest_change) + "\n")
+    if patt and biggest_change_year<2014:
+        target.write(word + "\t" + str(biggest_change_year) + "\t" + str(biggest_change) + "\n")
     #count = count + 1(
     #else:
      #   break

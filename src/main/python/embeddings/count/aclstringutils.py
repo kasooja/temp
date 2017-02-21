@@ -2,7 +2,9 @@ import regex
 import string
 from stemming.porter import stem
 from nltk.stem import WordNetLemmatizer
+import nltk
 from nltk.corpus import stopwords
+import re
 
 NUM = regex.compile("^\d*[-\./,]*\d+$")
 PUNCT = set(string.punctuation)
@@ -18,13 +20,16 @@ stops = set(stopwords.words("english"))
 
 
 def process_line(line):
-    tokens = line.split()
+    tokens = nltk.word_tokenize(line)
+    #tokens = line.split()
 
     if len(tokens) <=0:
         return None
     words = []
     for word in tokens:
         word = clean_word_permissive(word)
+
+
         if word is not None:
             words.append(lemmatize(word))
 
@@ -32,7 +37,7 @@ def process_line(line):
 
 
 def clean_word_permissive(word):
-    if word == "@" or word =="<p>":
+    if word == "@" or word =="<p>" or word == "quot":
         return None
     elif word in PUNCT:
         return None
@@ -45,7 +50,8 @@ def clean_word_permissive(word):
     else:
         word = word.strip().strip("*").lower()
         if NUM.match(word):
-            word = "<NUM>"
+            return None
+            #word = "<NUM>"
     return word
 
 
@@ -56,16 +62,16 @@ def stem_it(word):
 def lemmatize(word):
     return wordnet_lemmatizer.lemmatize(word)
 
-print(process_line("I am going to the market ."))
-
-print stem_it("translations")
-print stem_it("translating")
-print stem_it("translation")
-print stem_it("technologies")
-print "**************"
-print lemmatize("translations")
-print lemmatize("translating")
-print lemmatize("translation")
-print lemmatize("technologies")
-print lemmatize("svm")
-print lemmatize("svms")
+# print(process_line("I am going to the market ."))
+#
+# print stem_it("translations")
+# print stem_it("translating")
+# print stem_it("translation")
+# print stem_it("technologies")
+# print "**************"
+# print lemmatize("translations")
+# print lemmatize("translating")
+# print lemmatize("translation")
+# print lemmatize("technologies")
+# print lemmatize("svm")
+# print lemmatize("svms")
