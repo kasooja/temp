@@ -25,7 +25,7 @@ public class HyphenCleaner {
 			String firstToken = tokens[i];
 			if(firstToken.endsWith("-")){
 				if(firstToken.equalsIgnoreCase("misclas-")){
-					System.out.println("break");
+					System.out.println("break 1");
 				}
 				if(i+1<tokens.length){
 					int firstTokenCount = 0;					
@@ -34,7 +34,7 @@ public class HyphenCleaner {
 
 					String secondToken = tokens[i+1];
 					if(secondToken.equalsIgnoreCase("-sified")){
-						System.out.println("break");
+						System.out.println("break 2");
 					}
 				
 					int secondTokenCount = 0;

@@ -2,6 +2,7 @@ package parscit;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import common.BasicFileTools;
@@ -15,13 +16,13 @@ public class RegexTextCleaner {
 		String uncleaned_text_dir = "/home/kat/Downloads/Anne/Corpus/span_period_years/5/Uncompressed_Separated_Text/";
 		String cleaned_text_dir = "/home/kat/Downloads/Anne/Corpus/span_period_years/5/Cleaned_Uncompressed_Separated_Text/";
 		int fileNo = 0;
-		
+
 		Map<String, Integer> wordDict = new HashMap<String, Integer>();
 		String saveTo = "/home/kat/Downloads/Anne/Corpus/span_period_years/5/by_products/serialized_dict.dic";
-	
+
 		Map<String, Integer> uncleaned_wordDict = new HashMap<String, Integer>();
 		String uncleaned_saveTo = "/home/kat/Downloads/Anne/Corpus/span_period_years/5/by_products/serialized_uncleaned_dict.dic";
-			
+
 		if(!new File(cleaned_text_dir).exists())
 			new File(cleaned_text_dir).mkdir();
 		for(File yearDir : new File(uncleaned_text_dir).listFiles()){
@@ -39,7 +40,7 @@ public class RegexTextCleaner {
 				String text = BasicFileTools.extractText(textFile, " \n ");
 				StringBuilder bld = new StringBuilder();
 				//System.out.println("uncleaned: " + text);
-				
+
 				String[] uncleanedTokens = text.split("\\s+");
 				for(String uncleanedToken : uncleanedTokens){
 					if(!uncleaned_wordDict.containsKey(uncleanedToken))
@@ -48,31 +49,37 @@ public class RegexTextCleaner {
 				}
 				String raw = text;
 				text = RegexTokenizer.clean_text(text);
-				
-			//	System.out.println("cleaned: " + text);
-				
+
+				//	System.out.println("cleaned: " + text);
+
 				for(String token : RegexTokenizer.split_text(text)){
-					if("alignments.".equalsIgnoreCase(token)){
-						System.out.println("fo");
+					token = token.trim();
+					List<String> sub_tokens = RegexTokenizer.tokenize_token(token);
+					//System.out.println();
+					for(String sub_token : sub_tokens){
+						if("proposition.".equalsIgnoreCase(sub_token)){
+							System.out.println("fo");
+						}
+						//System.out.print(sub_token + " | ");
+						
+						if(!wordDict.containsKey(sub_token))
+							wordDict.put(sub_token, 0);					
+						wordDict.put(sub_token, wordDict.get(sub_token)+1);
+						bld.append(sub_token.trim() + " ");
 					}
-				//	System.out.print(token + " | ");
-					if(!wordDict.containsKey(token))
-						wordDict.put(token, 0);					
-					wordDict.put(token, wordDict.get(token)+1);
-					bld.append(token.trim() + " ");
 				}
-				
+
 				String cleanedTextFile = cleanedYearDir + "/" + textFile.getName();		
 				BasicFileTools.writeFile(cleanedTextFile, bld.toString().trim());
 			}
 		}
-		
+
 		wordDict = MapSort.sortByValue(wordDict);	
 		SerializationUtils.saveObject(wordDict, new File(saveTo));
-		
+
 		uncleaned_wordDict = MapSort.sortByValue(uncleaned_wordDict);		
 		SerializationUtils.saveObject(uncleaned_wordDict, new File(uncleaned_saveTo));
-		
+
 	}
 
 }
