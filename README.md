@@ -90,7 +90,7 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
     
     /home/kat/Downloads/Anne/embeddings/span_period_years/5/ppmi/svd/250/280594/11/aligned/
     
-    Sample output 1 below:
+Sample output 1 below:
     
     Similarity between translation and statistical drastically increases from 1979s to the 2014s:
     
@@ -136,46 +136,45 @@ So, the values of the dirs would be 1979, 1984, 1989, ...., 2009, 2014.
     
     
     
-    
-    
-   Sample output 2 below:
    
-   Similarity between neural and deep drastically increases from 1979s to the 2014s:
+Sample output 2 below:
    
-   1979, cosine similarity=0.00
+    Similarity between neural and deep drastically increases from 1979s to the 2014s:
    
-   1984, cosine similarity=-0.06
+    1979, cosine similarity=0.00
    
-   1989, cosine similarity=0.07
+    1984, cosine similarity=-0.06
    
-   1994, cosine similarity=-0.01
+    1989, cosine similarity=0.07
    
-   1999, cosine similarity=0.07
+    1994, cosine similarity=-0.01
    
-   2004, cosine similarity=-0.05
+    1999, cosine similarity=0.07
    
-   2009, cosine similarity=0.46
+    2004, cosine similarity=-0.05
    
-   2014, cosine similarity=0.64
+    2009, cosine similarity=0.46
+   
+    2014, cosine similarity=0.64
 
-   Overall related words for neural from 1979s to the 2014s:
+    Overall related words for neural from 1979s to the 2014s:
     
-   set(['ssns', 'spreading', 'subscribe', 'zero', 'computation', 'nets', 'networks', 'network', 'zone', 'recurrent', 'young', 'bengio', 'quarterly', 'hinton', 'convolutional', 'rnn', 'activation', 'optical', 'bayesian', 'timely', 'neural', 'yorktown', 'backpropagation', 'softmax', 'z'])
+    set(['ssns', 'spreading', 'subscribe', 'zero', 'computation', 'nets', 'networks', 'network', 'zone', 'recurrent', 'young', 'bengio', 'quarterly', 'hinton', 'convolutional', 'rnn', 'activation', 'optical', 'bayesian', 'timely', 'neural', 'yorktown', 'backpropagation', 'softmax', 'z'])
 
-   Related words for neural from 1979s to the 2014s:
+    Related words for neural from 1979s to the 2014s:
     
-   1979:  set(['zone', 'yn', 'yielding', 'young', 'yield', 'yorktown', 'zero', 'yields', 'york', 'z'])
+    1979:  set(['zone', 'yn', 'yielding', 'young', 'yield', 'yorktown', 'zero', 'yields', 'york', 'z'])
    
-   1984:  set(['contributing', 'rapidly', 'interdisciplinary', 'neural', 'spreading', 'reviews', 'optical', 'computation', 'quarterly', 'activation'])
+    1984:  set(['contributing', 'rapidly', 'interdisciplinary', 'neural', 'spreading', 'reviews', 'optical', 'computation', 'quarterly', 'activation'])
    
-   1989:  set(['bayesian', 'refereed', 'publication', 'neural', 'timely', 'subscribe', 'computation', 'quarterly', 'classifier', 'today'])
+    1989:  set(['bayesian', 'refereed', 'publication', 'neural', 'timely', 'subscribe', 'computation', 'quarterly', 'classifier', 'today'])
    
-   1994:  set(['network', 'neural', 'recurrent', 'elman', 'networks', 'backpropagation', 'hinton', 'nets', 'rumelhart', 'rcc'])
+    1994:  set(['network', 'neural', 'recurrent', 'elman', 'networks', 'backpropagation', 'hinton', 'nets', 'rumelhart', 'rcc'])
    
-   1999:  set(['sejnowski', 'pulsed', 'network', 'rosenberg', 'neural', 'hnn', 'backpropagation', 'softmax', 'synchrony', 'networks'])
+    1999:  set(['sejnowski', 'pulsed', 'network', 'rosenberg', 'neural', 'hnn', 'backpropagation', 'softmax', 'synchrony', 'networks'])
    
-   2004:  set(['network', 'ssns', 'sbns', 'neural', 'bishop', 'backpropagation', 'ssn', 'activations', 'synchrony', 'networks'])
+    2004:  set(['network', 'ssns', 'sbns', 'neural', 'bishop', 'backpropagation', 'ssn', 'activations', 'synchrony', 'networks'])
    
-   2009:  set(['rnn', 'neural', 'recurrent', 'dnns', 'autoencoders', 'bengio', 'collobert', 'mikolov', 'hinton', 'mnih'])
+    2009:  set(['rnn', 'neural', 'recurrent', 'dnns', 'autoencoders', 'bengio', 'collobert', 'mikolov', 'hinton', 'mnih'])
    
-   2014:  set(['convolutional', 'feedforward', 'network', 'neural', 'recursive', 'recurrent', 'elman', 'rnns', 'networks', 'rnn'])
+    2014:  set(['convolutional', 'feedforward', 'network', 'neural', 'recursive', 'recurrent', 'elman', 'rnns', 'networks', 'rnn'])
