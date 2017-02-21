@@ -1,5 +1,7 @@
 import regex
 import string
+from stemming.porter import stem
+from nltk.stem import WordNetLemmatizer
 
 NUM = regex.compile("^\d*[-\./,]*\d+$")
 PUNCT = set(string.punctuation)
@@ -10,6 +12,8 @@ REGEX_TOKENIZER_1 = "(\\.\\.\\.+|[\\p{Po}\\p{Ps}\\p{Pe}\\p{Pi}\\p{Pf}\u2013\u201
 REGEX_TOKENIZER_2 = "\\p{C}|^\\p{Z}+|\\p{Z}+$"
 REGEX_SPLITTER = "\\p{Z}+"
 
+wordnet_lemmatizer = WordNetLemmatizer()
+
 
 def process_line(line):
     tokens = line.split()
@@ -18,7 +22,7 @@ def process_line(line):
         return None
     words = []
     for word in tokens:
-        word = clean_word_permissive(word)
+        word = lemmatize(clean_word_permissive(word))
         if word is not None:
             words.append(word)
 
@@ -39,3 +43,21 @@ def clean_word_permissive(word):
     return word
 
 
+def stem_it(word):
+    return stem(word)
+
+
+def lemmatize(word):
+    return wordnet_lemmatizer.lemmatize(word)
+
+print stem_it("translations")
+print stem_it("translating")
+print stem_it("translation")
+print stem_it("technologies")
+print "**************"
+print lemmatize("translations")
+print lemmatize("translating")
+print lemmatize("translation")
+print lemmatize("technologies")
+print lemmatize("svm")
+print lemmatize("svms")

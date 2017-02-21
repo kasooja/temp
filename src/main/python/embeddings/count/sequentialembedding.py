@@ -49,7 +49,7 @@ class SequentialEmbedding:
             year_neighbours_dic[year] = neighbour_set
         return year_neighbours_dic
 
-    def get_seq_closest(self, word, start_year, end_year=2009, step = 5, n=10):
+    def get_seq_closest(self, word, start_year, end_year=2014, step = 5, n=10):
         closest = collections.defaultdict(float)
         for year in range(start_year, end_year, step = step):
             embed = self.embeds[year]
@@ -68,6 +68,8 @@ class SequentialEmbedding:
         for year,embed in self.embeds.iteritems():
             year_subembeds[year] = embed.get_subembed(word_list)
         return SequentialEmbedding.from_ordered_dict(year_subembeds)
+
+
 
 
 class SequentialSVDEmbedding(SequentialEmbedding):
