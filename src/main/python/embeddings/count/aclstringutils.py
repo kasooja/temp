@@ -2,6 +2,7 @@ import regex
 import string
 from stemming.porter import stem
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
 
 NUM = regex.compile("^\d*[-\./,]*\d+$")
 PUNCT = set(string.punctuation)
@@ -13,6 +14,7 @@ REGEX_TOKENIZER_2 = "\\p{C}|^\\p{Z}+|\\p{Z}+$"
 REGEX_SPLITTER = "\\p{Z}+"
 
 wordnet_lemmatizer = WordNetLemmatizer()
+stops = set(stopwords.words("english"))
 
 
 def process_line(line):
@@ -22,9 +24,9 @@ def process_line(line):
         return None
     words = []
     for word in tokens:
-        word = lemmatize(clean_word_permissive(word))
+        word = clean_word_permissive(word)
         if word is not None:
-            words.append(word)
+            words.append(lemmatize(word))
 
     return words
 
@@ -35,6 +37,10 @@ def clean_word_permissive(word):
     elif word in PUNCT:
         return None
     elif word in AFFIX:
+        return None
+    elif len(word) < 2:
+        return None
+    elif stops.__contains__(word):
         return None
     else:
         word = word.strip().strip("*").lower()
@@ -49,6 +55,8 @@ def stem_it(word):
 
 def lemmatize(word):
     return wordnet_lemmatizer.lemmatize(word)
+
+print(process_line("I am going to the market ."))
 
 print stem_it("translations")
 print stem_it("translating")
