@@ -28,6 +28,7 @@ for dir_name in range(start_year, end_year, span_period_years):
     mkdir(OUTPUT + "/" + folder)
     print("Processing folder...", folder)
     for datafile in os.listdir(DATA + folder):
+        print(datafile)
         with open(DATA + folder + "/" + datafile) as fp:
             output = []
             outfile = open(OUTPUT + "/" + folder + "/" + datafile, 'w')
