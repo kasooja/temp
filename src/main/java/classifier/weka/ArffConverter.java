@@ -16,12 +16,15 @@ import weka.core.converters.ArffSaver;
 public class ArffConverter {
 
 	//private static String dataDirPath = "C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/Parscit/Uncompressed_Separated_Text/";
+	//private static String dataDirPath = "/home/kat/Downloads/Anne/Corpus/span_period_years/5/Hyphen_cleaned_pos/";
+	//private static String dataDirPath = "/home/kat/Downloads/Anne/Corpus/span_period_years/5/Test/mts/mts_small/";
+	private static String dataDirPath = "/home/kat/Downloads/Anne/Corpus/span_period_years/5/Test/txt_trec/trec_small/";
 	//private static String dataDirPath = "C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/nlp4nlp/trec/trec_small/";
 	//private static String dataDirPath = "C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/nlp4nlp/mts/mts_small/";
-	private static String dataDirPath = "C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/nlp4nlp/trec/trec_extracted/";
+	//private static String dataDirPath = "C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/nlp4nlp/trec/trec_extracted/";
 	//private static String dataDirPath = "C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/nlp4nlp/mts/mts_extracted/";
 	
-	private static String arff = "src/main/resources/weka/test_lat_trec_ext_data.arff";	
+	private static String arff = "src/main/resources/weka/test_pos_lat_trec_data.arff";	
 
 	private static boolean train = false;
 
@@ -38,7 +41,6 @@ public class ArffConverter {
 
 		File dataDir = new File(dataDirPath);
 
-
 		if(train){
 			File[] files = dataDir.listFiles();
 			Arrays.sort(files);
@@ -48,12 +50,12 @@ public class ArffConverter {
 				}
 			}
 		} else {
-			for(int i=1; i<=8; i++){
+			for(int i=1979; i<=2014; i=i+5){
 				attVals.add(String.valueOf(i));				
 			}			
 		}
 
-		atts.add(new Attribute("decade", attVals));
+		atts.add(new Attribute("time_period", attVals));
 
 		Instances data = new Instances("corpus", atts, 0);
 
@@ -64,8 +66,10 @@ public class ArffConverter {
 					String className = classDir.getName();				
 					for(File dataFile : classDir.listFiles()){
 						if(!dataFile.isHidden()){	
-							double[] vals = new double[data.numAttributes()];//returns number of attributes						
-							vals[0] = data.attribute(0).addStringValue(BasicFileTools.extractText(dataFile, " \n ").trim());
+							double[] vals = new double[data.numAttributes()];//returns number of attributes
+							String fileText = BasicFileTools.extractText(dataFile, " \n ").trim();
+							
+							vals[0] = data.attribute(0).addStringValue(fileText);
 							vals[1] = attVals.indexOf(className);
 							data.add(new DenseInstance(1.0, vals));
 						}
@@ -77,8 +81,9 @@ public class ArffConverter {
 				if(!dataFile.isHidden()){	
 					String className = getClassNameFromYear(dataFile.getName());	
 					if(className!=null){
-						double[] vals = new double[data.numAttributes()];//returns number of attributes						
-						vals[0] = data.attribute(0).addStringValue(BasicFileTools.extractText(dataFile, " \n ").trim());
+						double[] vals = new double[data.numAttributes()];//returns number of attributes
+						String fileText = BasicFileTools.extractText(dataFile, " \n ").trim();
+						vals[0] = data.attribute(0).addStringValue(fileText);
 						vals[1] = attVals.indexOf(className);
 						data.add(new DenseInstance(1.0, vals));
 					}
@@ -105,21 +110,21 @@ public class ArffConverter {
 			String yearAsString = matcher.group(1).trim();
 			int year = Integer.parseInt(yearAsString);
 			if(year >= 1979 && year <= 1983){
-				return String.valueOf(1);
+				return String.valueOf(1979);
 			} else if(year >= 1984 && year <= 1988){
-				return String.valueOf(2);
+				return String.valueOf(1984);
 			} else if(year >= 1989 && year <= 1993){
-				return String.valueOf(3);
+				return String.valueOf(1989);
 			} else if(year >= 1994 && year <= 1998){
-				return String.valueOf(4);
+				return String.valueOf(1994);
 			} else if(year >= 1999 && year <= 2003){
-				return String.valueOf(5);
+				return String.valueOf(1999);
 			} else if(year >= 2004 && year <= 2008){
-				return String.valueOf(6);
+				return String.valueOf(2004);
 			} else if(year >= 2009 && year <= 2013){
-				return String.valueOf(7);
+				return String.valueOf(2009);
 			} else if(year >= 2014 && year <= 2015){
-				return String.valueOf(8);
+				return String.valueOf(2014);
 			} else {
 				return null;
 			}
