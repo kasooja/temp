@@ -3,16 +3,13 @@ package classifier.weka;
 import java.util.ArrayList;
 
 import common.BasicFileTools;
-import weka.classifiers.Classifier;
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.core.Instance;
 import weka.core.Instances;
-import weka.filters.supervised.attribute.AttributeSelection;
-import weka.filters.unsupervised.attribute.StringToWordVector;
 
 
-public class TrainTest {
+public class EvaluateWithSavedModel {
 
 	private static int time_period_span = 5;
 	private static ArrayList<String> attVals = new ArrayList<String>();
@@ -23,7 +20,6 @@ public class TrainTest {
 		}	
 	}
 
-	//textM, textF, textC
 	public static String getXML(String text, String classLabel, int id){
 		StringBuilder bld = new StringBuilder();
 		bld.append("<text id=\"" + id + "\"" + ">\n");
@@ -56,44 +52,27 @@ public class TrainTest {
 
 	public static void main(String[] args) {
 
-		Instances acl_data = Commons.loadWekaData("C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/Weka/pos_data/data/train_pos_lat_acl_data.arff");
+		//Instances acl_data = Commons.loadWekaData("C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/Weka/pos_data/data/train_pos_lat_acl_data.arff");
 
 		Instances mts_testData = Commons.loadWekaData("C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/Weka/pos_data/data/test_pos_lat_mts_data.arff");
 		//Instances trec_testData = Commons.loadWekaData("C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/Weka/pos_data/data/test_pos_lat_trec_data.arff");
-		
-		String saveModelPath = "src/main/resources/acl_data_svm_lin_1500.model";
-		
-		Instances trainingData = acl_data;
-		
-		Instances testData = mts_testData;
 
+		String saveModelPath = "src/main/resources/acl_data_svm_lin_1500.model";
 		String fileName = "lin_AclOnMts";
 
-		StringToWordVector stringToWordVectorFilter = Commons.getStringToWordVectorFilter();		
-		AttributeSelection attributeSelectionFilter = Commons.getAttributeSelectionFilter();
 
-		
-		
-		
-		Classifier svm = Commons.getFirstBinClassifierFromJson();
-		
-		try {			
-			stringToWordVectorFilter.setInputFormat(trainingData);
+		Instances testData = mts_testData;
 
-			FilteredClassifier filtClassifier2 = new FilteredClassifier();			
-			filtClassifier2.setClassifier(svm);
-			filtClassifier2.setFilter(attributeSelectionFilter);
+		try {						
 
-			FilteredClassifier filtClassifier1 = new FilteredClassifier();			
-			filtClassifier1.setClassifier(filtClassifier2);
-			filtClassifier1.setFilter(stringToWordVectorFilter);
-			
-			System.out.println("Training started");
+			System.out.println("Loading trained model started");
+			// deserialize model
+			FilteredClassifier filtClassifier1 = (FilteredClassifier) weka.core.SerializationHelper.read(saveModelPath);
+
 			long startTime = System.currentTimeMillis();
-			filtClassifier1.buildClassifier(trainingData);
 			long endTime = System.currentTimeMillis();
 			System.out.println("Done");
-			System.out.println("Time take for " + trainingData.numInstances() + " instances: " + ((endTime - startTime)/1000) + " seconds.");
+			System.out.println("Time take for loading trained model " + ((endTime - startTime)/1000) + " seconds.");
 
 			int id = 1;
 
@@ -113,20 +92,21 @@ public class TrainTest {
 				String actualClassLabel =  attVals.get((int)instance.value(instance.classIndex()));
 				String xmlTextGoldTag = getXML(text, actualClassLabel, id);				
 				goldPredict.append(xmlTextGoldTag + "\n\n");
-
+				System.out.println(id);
 				id++;
 			}
-			
-			
+
+
 			BasicFileTools.writeFile("src/main/resources/predict_" + fileName + ".txt", xmlPredict.toString().trim());
 			BasicFileTools.writeFile("src/main/resources/gold_" + fileName + ".txt" , goldPredict.toString().trim());
 
-			Evaluation eval = new Evaluation(trainingData);
+			Evaluation eval = new Evaluation(testData);
 			eval.evaluateModel(filtClassifier1, testData);
 			System.out.println("Weka results");
-			System.out.println(eval.toSummaryString("\nResults\n======\n", false));
-			
-			weka.core.SerializationHelper.write(saveModelPath, filtClassifier1);
+			System.out.println(eval.toSummaryString(true));//.toSummaryString("\nResults\n======\n", false));
+			System.out.println("****************************************************************");
+			System.out.println(eval.toClassDetailsString());
+
 
 		} catch (Exception e1) {
 			e1.printStackTrace();

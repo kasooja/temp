@@ -44,9 +44,9 @@ public class Commons {
 		//Stemmer stemmer = new SnowballStemmer();
 		StringToWordVector stringToWordVector = new StringToWordVector();	
 		//stringToWordVector.setStemmer(stemmer);
-		stringToWordVector.setWordsToKeep(100);
+		stringToWordVector.setWordsToKeep(25000);
 		stringToWordVector.setNormalizeDocLength(selectedTag);		
-		stringToWordVector.setMinTermFreq(4);
+		stringToWordVector.setMinTermFreq(15);
 		stringToWordVector.setLowerCaseTokens(true);
 		stringToWordVector.setDoNotOperateOnPerClassBasis(false);
 		NGramTokenizer tok = new NGramTokenizer();
@@ -65,7 +65,7 @@ public class Commons {
 		options[0] = "-E";
 		options[1] = "weka.attributeSelection.InfoGainAttributeEval -B";
 		options[2] = "-S";	
-		options[3] = "weka.attributeSelection.Ranker -T -1.7976931348623157E308 -N 50";
+		options[3] = "weka.attributeSelection.Ranker -T -1.7976931348623157E308 -N 1500";
 		try {
 			attrSel.setOptions(options);
 		} catch (Exception e) {
