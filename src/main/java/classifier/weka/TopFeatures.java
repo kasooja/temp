@@ -29,7 +29,7 @@ public class TopFeatures {
 
 		Instances trainingData = acl_data;
 
-		String fileName = dir + "top_1500_feat_bi_acl_data_pos_3.csv";
+		String fileName = dir + "top_1500_feat_uni_acl_data_pos_3.txt";
 
 		StringToWordVector stringToWordVectorFilter = Commons.getStringToWordVectorFilter();		
 		AttributeSelection attributeSelectionFilter = Commons.getAttributeSelectionFilter();
@@ -90,6 +90,7 @@ public class TopFeatures {
 			double numInstances = (double) topAttributes.numInstances();
 
 			for(String attr : attrClassAvgValue.keySet()){
+				attr = attr.replaceAll(",", "-com-");
 				Map<String, Double> map = attrClassAvgValue.get(attr);
 				bld.append(attr + sep);
 				for(String classVal : classValues){					
