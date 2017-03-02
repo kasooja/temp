@@ -50,7 +50,7 @@ public class Commons {
 		stringToWordVector.setLowerCaseTokens(true);
 		stringToWordVector.setDoNotOperateOnPerClassBasis(false);
 		NGramTokenizer tok = new NGramTokenizer();
-		tok.setNGramMaxSize(2);
+		tok.setNGramMaxSize(1);
 		stringToWordVector.setTokenizer(tok);
 		//stringToWordVector.setIDFTransform(true);
 		//stringToWordVector.setTFTransform(true);

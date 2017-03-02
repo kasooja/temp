@@ -14,11 +14,11 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
 
 public class TrainTest {
 
-	private static int time_period_span = 5;
+	private static int time_period_span = 3;
 	private static ArrayList<String> attVals = new ArrayList<String>();
 
 	static {
-		for(int i=1979; i<=2014; i=i+time_period_span){
+		for(int i=1979; i<=2015; i=i+time_period_span){
 			attVals.add(String.valueOf(i));				
 		}	
 	}
@@ -56,23 +56,26 @@ public class TrainTest {
 
 	public static void main(String[] args) {
 
-		Instances acl_data = Commons.loadWekaData("C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/Weka/pos_data/data/train_pos_lat_acl_data.arff");
+		Instances acl_data = Commons.loadWekaData("C:/Users/Kartik Asooja/Dropbox/_anneKartik/data/Experiment/"
+				+ "Temporal_Classification/Train/ACL_Corpus/3_year/raw/train_acl_data_raw_3.arff");
 
-		Instances mts_testData = Commons.loadWekaData("C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/Weka/pos_data/data/test_pos_lat_mts_data.arff");
+		Instances mts_testData = Commons.loadWekaData("C:/Users/Kartik Asooja/Dropbox/_anneKartik/data/"
+				+ "Experiment/Temporal_Classification/Test/MTS/3_year/raw/test_mts_data_raw_3.arff");
+	
 		//Instances trec_testData = Commons.loadWekaData("C:/Users/Kartik Asooja/Downloads/Anne/CurrentData/Weka/pos_data/data/test_pos_lat_trec_data.arff");
 		
-		String saveModelPath = "src/main/resources/acl_data_svm_lin_1500.model";
+		String saveModelPath = "C:/Users/Kartik Asooja/Dropbox/_anneKartik/data/Experiment/"
+				+ "Temporal_Classification/Models/acl_data_svm_lin_uni_raw_1500_3.model";
 		
 		Instances trainingData = acl_data;
 		
 		Instances testData = mts_testData;
 
-		String fileName = "lin_AclOnMts";
+		String fileName = "svm_lin_uni_raw_3_Acl_on_Mts";
+
 
 		StringToWordVector stringToWordVectorFilter = Commons.getStringToWordVectorFilter();		
 		AttributeSelection attributeSelectionFilter = Commons.getAttributeSelectionFilter();
-
-		
 		
 		
 		Classifier svm = Commons.getFirstBinClassifierFromJson();
